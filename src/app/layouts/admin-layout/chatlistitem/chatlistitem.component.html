@@ -1,0 +1,55 @@
+<div *ngIf="is_collapsed">
+    
+    <div class="card-header card-header-warning card-header-icon">
+    
+        <p class="card-category">Discussion</p>
+        <h3 class="card-title">{{chat._id}}
+            <small>ID</small>
+        </h3>
+    </div>
+    <div class="card-footer">
+        <div class="justify-content-between d-flex col-11">
+            <p class="stats">
+                <small class="material-icons ">question_answer </small> <strong> {{chat.numberofhistory}}  </strong> messages     
+            </p>
+            <p class="stats">
+                <small class="material-icons ">today </small> <strong> {{chat.timestart |date}}  </strong>     
+            </p>
+            <p class="stats">
+                <app-chatstar [score]="chat.review.length>0?chat.review[0].score:0" ></app-chatstar>
+            </p>
+        </div>
+        <div class="float-right" (click)="change_collapse()" style="cursor: pointer ;" >
+            <i class="material-icons"  >chevron_right</i>
+        </div>
+    
+
+    </div>
+
+</div>
+
+<div *ngIf="!is_collapsed">
+
+        <div class="card-body">
+            <div>
+                <div class="float-left" (click)="change_collapse()" style="cursor: pointer ;" >
+                    <i class="material-icons"  >chevron_left</i>
+                </div>
+                <div>
+                    <h6 class="card-category text-gray">Discussion / {{chat.timestart | date:"medium"}}</h6>
+                    <h4 class="card-title">{{chat._id |slice}}</h4>
+                </div>
+            </div>
+                <div class="card-footer row">
+                    <p class="stats col-12 mb-0 pl-0"> 
+                        <small class="material-icons "> question_answer </small> number of messages: <strong>{{chat.numberofhistory}}</strong> 
+                    </p>
+                    <p class="stats col-12 mb-0 pl-0"> 
+                        <small class="material-icons "> question_answer </small> chat durationin minutes  <strong>{{duration}}</strong> 
+                    </p>
+                </div>
+            
+            <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+        </div>
+    
+</div>
