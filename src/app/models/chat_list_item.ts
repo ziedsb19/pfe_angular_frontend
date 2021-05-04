@@ -5,7 +5,12 @@ interface chatListItem {
             langue: string,
             mode: string,
             sender_id: string,
-            _id: string
+            _id: string,
+            adresse: string,
+            age: number,
+            nom: string,
+            prenom: string,
+            sexe: string,
 
         }
     ],
@@ -17,6 +22,13 @@ interface chatListItem {
             sender_id: string,
             _id: string
         }
+    ],
+    history: [{
+
+        "message": any,
+        "time": number,
+        "sender": string
+    }
     ],
     sender_id: string,
     timeend: any,

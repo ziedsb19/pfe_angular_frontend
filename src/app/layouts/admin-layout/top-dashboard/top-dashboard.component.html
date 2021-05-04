@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">forum</i>
+                </div>
+                <p class="card-category">Number of conversations</p>
+                <h3 class="card-title"> {{dashService.all_counts}}
+                    <small>Chats</small>
+                </h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">email</i>
+                    <span> {{dashService.messages.mean}} message per conversation </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">military_tech</i>
+                </div>
+                <p class="card-category">Reviews mean</p>
+                <h3 class="card-title">{{dashService.reviews.mean}}
+                    <small>/5</small>
+                </h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">speed</i> variance of &#177; {{dashService.reviews.std}} %
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">error</i>
+                </div>
+                <p class="card-category">Error Rate</p>
+                <h3 class="card-title">{{dashService.errors_rate.mean}} % </h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">speed</i> variance of &#177; {{dashService.errors_rate.std}} %
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">timelapse</i>
+                </div>
+                <p class="card-category">Response time</p>
+                <h3 class="card-title">+ {{dashService.time_response.mean}} ms </h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">update</i> variance of  {{dashService.time_response.std}} ms
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

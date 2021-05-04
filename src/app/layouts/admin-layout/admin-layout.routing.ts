@@ -10,16 +10,18 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 import { ChatDashboardComponent } from './chat-dashboard/chat-dashboard.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component'
 
 export const AdminLayoutRoutes: Routes = [
 
     { path: "chatdashboard", component: ChatDashboardComponent },
 
-    { path: 'dashboard', component: DashboardComponent },
+    { path: 'dashboard', component: MainDashboardComponent },
+
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'table-list', component: TableListComponent },
     { path: 'typography', component: TypographyComponent },
-    { path: 'icons', component: IconsComponent },
+    { path: 'icons', component: DashboardComponent },
     { path: 'maps', component: MapsComponent },
     { path: 'notifications', component: NotificationsComponent },
     { path: 'upgrade', component: UpgradeComponent },

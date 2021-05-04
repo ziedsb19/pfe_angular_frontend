@@ -21,12 +21,19 @@ import { ChatDashboardComponent } from './chat-dashboard/chat-dashboard.componen
 
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ChathistoryComponent } from './chathistory/chathistory.component';
 import { ChatlistconvComponent } from './chatlistconv/chatlistconv.component'
 
 import { HttpClientModule } from '@angular/common/http';
 import { ChatstarComponent } from './chatstar/chatstar.component';
-import { ChatlistitemComponent } from './chatlistitem/chatlistitem.component'
+import { ChatlistitemComponent } from './chatlistitem/chatlistitem.component';
+import { MessageUserComponent } from './message-user/message-user.component';
+import { MessageBotComponent } from './message-bot/message-bot.component';
+import { TopDashboardComponent } from './top-dashboard/top-dashboard.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component'
 
 @NgModule({
   imports: [
@@ -42,7 +49,10 @@ import { ChatlistitemComponent } from './chatlistitem/chatlistitem.component'
     MatSelectModule,
     MatTooltipModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatChipsModule,
+    MatNativeDateModule
   ],
   declarations: [
     DashboardComponent,
@@ -58,6 +68,10 @@ import { ChatlistitemComponent } from './chatlistitem/chatlistitem.component'
     ChatlistconvComponent,
     ChatstarComponent,
     ChatlistitemComponent,
+    MessageUserComponent,
+    MessageBotComponent,
+    TopDashboardComponent,
+    MainDashboardComponent,
   ]
 })
 

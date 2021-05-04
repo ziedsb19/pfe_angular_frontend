@@ -1,4 +1,4 @@
-<div *ngIf="is_collapsed">
+<div *ngIf="chatService.chat_list_item!=chat">
     
     <div class="card-header card-header-warning card-header-icon">
     
@@ -19,7 +19,7 @@
                 <app-chatstar [score]="chat.review.length>0?chat.review[0].score:0" ></app-chatstar>
             </p>
         </div>
-        <div class="float-right" (click)="change_collapse()" style="cursor: pointer ;" >
+        <div class="float-right" (click)="change_collapse_true()" style="cursor: pointer ;" >
             <i class="material-icons"  >chevron_right</i>
         </div>
     
@@ -28,11 +28,11 @@
 
 </div>
 
-<div *ngIf="!is_collapsed">
+<div *ngIf="chatService.chat_list_item==chat">
 
         <div class="card-body">
             <div>
-                <div class="float-left" (click)="change_collapse()" style="cursor: pointer ;" >
+                <div class="float-left" (click)="change_collapse_false()" style="cursor: pointer ;" >
                     <i class="material-icons"  >chevron_left</i>
                 </div>
                 <div>
@@ -40,16 +40,114 @@
                     <h4 class="card-title">{{chat._id |slice}}</h4>
                 </div>
             </div>
-                <div class="card-footer row">
-                    <p class="stats col-12 mb-0 pl-0"> 
-                        <small class="material-icons "> question_answer </small> number of messages: <strong>{{chat.numberofhistory}}</strong> 
+                <div class="card-footer row mt-1">
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> play_arrow </small> start time:   <strong class="pl-2">{{chat.timestart|date: "medium"}}</strong> 
                     </p>
-                    <p class="stats col-12 mb-0 pl-0"> 
-                        <small class="material-icons "> question_answer </small> chat durationin minutes  <strong>{{duration}}</strong> 
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> pause </small> end time:   <strong class="pl-2">{{chat.timeend|date: "medium"}}</strong> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> question_answer </small> number of messages: <strong class="pl-2">{{chat.numberofhistory}}</strong> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> timelapse </small> chat duration in minutes  <strong class="pl-2">{{duration}}</strong> 
+                    </p>
+                    <hr class="col-12">
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> reviews </small> reviews:   
+                        <span  class="pl-2"> 
+                            <app-chatstar [score]="review_score" ></app-chatstar>
+                            <strong *ngIf="review_score">
+                                {{review_score}} /5
+                            </strong>
+                            <strong *ngIf="!review_score">
+                                Not Found
+                            </strong>
+                        </span> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> rate_review </small> comments:   
+                        <span   class="pl-2"> 
+                            <strong>
+                                {{review_comment}} 
+                            </strong>
+                        </span> 
+ 
+                    </p>
+                    <hr class="col-12">
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> g_translate </small> langue:   
+                        <span   class="pl-2"> 
+                            <strong>
+                                {{langue |uppercase }} 
+                            </strong>
+                        </span> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> settings </small> discussion mode:   
+                        <span  class="pl-2"> 
+                            <strong>
+                                {{mode }} 
+                            </strong>
+                        </span> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> badge </small> name:   
+                        <span class="pl-2"> 
+                            <strong>
+                                {{nom}}  
+                            </strong>
+                        </span> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> my_location </small> adresse:   
+                        <span class="pl-2"> 
+                            <strong>
+                                {{adress}}  
+                            </strong>
+                        </span> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> today </small> age:   
+                        <span class="pl-2"> 
+                            <strong>
+                                {{age!=0?age:"Not Found"}}  
+                            </strong>
+                        </span> 
+                    </p>
+                    <hr class="col-12">
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> dangerous </small> Erreur Rate:   
+                        <span class="pl-2"> 
+                            <strong *ngIf="error_rate==null">
+                                calculating error rate...  
+                            </strong>
+                            <strong *ngIf="error_rate">
+                                {{error_rate}} %   
+                            </strong>
+                            <strong *ngIf="!error_rate">
+                                0 %
+                            </strong>
+                        </span> 
+                    </p>
+                    <p class="stats col-12 mb-1 pl-0"> 
+                        <small class="material-icons "> shutter_speed </small> response time average:   
+                        <span class="pl-2"> 
+                            <strong *ngIf="response_time==null">
+                                calculating response time avg ...  
+                            </strong>
+                            <strong *ngIf="response_time">
+                                {{response_time}} ms 
+                            </strong>
+                            <strong *ngIf="!response_time">
+                                0 ms  
+                            </strong>
+                        </span> 
                     </p>
                 </div>
             
-            <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+            <a href="javascript:void(0)" class="btn btn-danger btn-round" (click)="show_history()" >Show</a>
         </div>
     
 </div>

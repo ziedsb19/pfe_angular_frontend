@@ -21,7 +21,7 @@ $gray: #92959E;
 
 
 .chat {
-    width: auto;
+    width: 100%;
     float: left;
     background: #F2F5F8;
     border-top-right-radius: 5px;
@@ -64,7 +64,7 @@ $gray: #92959E;
         padding: 30px 30px 20px;
         border-bottom: 2px solid white;
         overflow-y: scroll;
-        height: 575px;
+        height: 60em;
 
         ul {
             list-style: None;
@@ -110,6 +110,8 @@ $gray: #92959E;
 
         .other-message {
             background: $blue;
+            width: fit-content;
+            padding-right: 3em;
 
             &:after {
                 border-bottom-color: $blue;
