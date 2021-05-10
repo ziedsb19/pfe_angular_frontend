@@ -11,12 +11,14 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 
 import { ChatDashboardComponent } from './chat-dashboard/chat-dashboard.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component'
+import { IntentDashboardComponent } from './intent-dashboard/intent-dashboard.component'
+
 
 export const AdminLayoutRoutes: Routes = [
 
     { path: "chatdashboard", component: ChatDashboardComponent },
-
     { path: 'dashboard', component: MainDashboardComponent },
+    { path: 'intents', component: IntentDashboardComponent },
 
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'table-list', component: TableListComponent },

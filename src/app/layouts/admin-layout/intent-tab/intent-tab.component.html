@@ -1,0 +1,36 @@
+
+    <div class="card">
+        <div class="card-header card-header-danger">
+            <h4 class="card-title">Latest Reviews</h4>
+            <p class="card-category">New employees on 15th September, 2016</p>
+        </div>
+        <div class="card-body table-responsive">
+            <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="10" [pageSizeOptions]="[10,15,20]">
+            </mat-paginator>  
+            <table id="nlu" class="table table-hover">
+                <thead class="text-danger">
+                    <th>Date</th>
+                    <th>Intent Text</th>
+                    <th>Confidence</th>
+                    <th>Pred Intents</th>
+                    <th>Conversation</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of nlu">
+                        <td>{{item.start | date : "mediumDate"}}</td>
+                        <td>{{item.intent.text}}</td>
+                        <td>{{item.intent.intent.confidence}}</td>
+                        <td><mat-chip-list aria-label="Fish selection">
+                                <mat-chip *ngFor="let chip of item.intent.intent_ranking.slice(1,4)" color="dark" [selected]="true" >{{chip.name}}</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                        <td><a [routerLink]="['/chatdashboard']" [queryParams]="{ id: item.sender_id }"> see discussion</a></td>
+                    </tr>
+                </tbody>
+                
+                <tfoot>                  
+                </tfoot>
+            
+            </table>
+        </div>
+    </div>

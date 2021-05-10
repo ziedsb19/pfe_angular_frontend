@@ -1,0 +1,4 @@
+::ng-deep div.card-header div#intentsPlot .ct-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}

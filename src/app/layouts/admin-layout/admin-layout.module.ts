@@ -33,7 +33,10 @@ import { ChatlistitemComponent } from './chatlistitem/chatlistitem.component';
 import { MessageUserComponent } from './message-user/message-user.component';
 import { MessageBotComponent } from './message-bot/message-bot.component';
 import { TopDashboardComponent } from './top-dashboard/top-dashboard.component';
-import { MainDashboardComponent } from './main-dashboard/main-dashboard.component'
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { ReviewTabComponent } from './review-tab/review-tab.component';
+import { IntentDashboardComponent } from './intent-dashboard/intent-dashboard.component';
+import { IntentTabComponent } from './intent-tab/intent-tab.component'
 
 @NgModule({
   imports: [
@@ -72,6 +75,9 @@ import { MainDashboardComponent } from './main-dashboard/main-dashboard.componen
     MessageBotComponent,
     TopDashboardComponent,
     MainDashboardComponent,
+    ReviewTabComponent,
+    IntentDashboardComponent,
+    IntentTabComponent,
   ]
 })
 

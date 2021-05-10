@@ -33,6 +33,15 @@ export class MainDashboardComponent implements OnInit {
     this.getAgeByLength();
     this.getAgeByReview();
     this.getAgeByError();
+    this.getSexeBarPlot();
+    this.getSexeByLength();
+    this.getSexeByError();
+    this.getSexeByReview();
+    this.getLangueBarPlot();
+    this.getLangueByLength();
+    this.getLangueByError();
+    this.getLangueByReview();
+    this.getModeBarPlot();
   }
 
   startAnimationForLineChart(chart) {
@@ -92,6 +101,487 @@ export class MainDashboardComponent implements OnInit {
 
     seq2 = 0;
   };
+
+
+  getReviewsBarPlot() {
+
+
+    this.dashService.getReviewsBarplot().subscribe((data) => {
+      let labels = []
+      let values = []
+      data.forEach(el => {
+        labels.push(el["label"])
+        values.push(el["score"])
+
+      })
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 30,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#reviewsPie', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+  getModeBarPlot() {
+
+    this.dashService.getModeBarPlot().subscribe((data) => {
+      let labels = []
+      let values = []
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 60,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#modePie', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+
+  getSexeBarPlot() {
+
+    let mapping = { "homme": "H", "femme": "F" }
+
+    this.dashService.getSexeBarPlot().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 60,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#SexePlot', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+  getSexeByLength() {
+
+    let mapping = { "homme": "H", "femme": "F" }
+
+    this.dashService.getSexeByLength().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 60,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#SexeByLength', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+  getSexeByError() {
+
+    let mapping = { "homme": "H", "femme": "F" }
+
+    this.dashService.getSexeByError().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          labelInterpolationFnc: function (value) {
+            return (value * 100).toFixed(0) + "%";
+          },
+        },
+
+        axisY: {
+          offset: 60,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#SexeByError', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+  getSexeByReview() {
+
+    let mapping = { "homme": "H", "femme": "F" }
+
+    this.dashService.getSexeByReview().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 60,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#SexeByReview', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+
+  getLangueBarPlot() {
+
+    this.dashService.getLangueBarPlot().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 30,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#LanguePlot', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+  getLangueByLength() {
+
+
+    this.dashService.getLangueByLength().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 30,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#LangueByLength', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+  getLangueByError() {
+
+
+    this.dashService.getLangueByError().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          labelInterpolationFnc: function (value) {
+            return (value * 100).toFixed(0) + "%";
+          },
+        },
+
+        axisY: {
+          offset: 30,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#LangueByError', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+  getLangueByReview() {
+
+
+    this.dashService.getLangueByReview().subscribe((data) => {
+
+
+      let labels = []
+      let values = []
+
+      data.forEach(el => {
+        labels.push(el["_id"])
+        values.push(el["count"])
+
+      })
+
+      const dataDailySalesChart: any = {
+        labels: labels,
+        series: [values]
+      };
+
+
+      const optionsDailySalesChart: any = {
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: true,
+          high: Math.max(...values) + 1
+        },
+
+        axisY: {
+          offset: 30,
+
+        },
+
+        reverseData: true,
+        horizontalBars: true,
+
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      var chart = new Chartist.Bar('#LangueByReview', dataDailySalesChart, optionsDailySalesChart);
+
+      this.startAnimationForBarChart(chart)
+
+    })
+
+
+  }
+
+
 
   getAgeBar(data) {
     let tmp_values = []
@@ -503,7 +993,7 @@ export class MainDashboardComponent implements OnInit {
       let labels = []
       let values = []
       data.forEach(el => {
-        labels.push(el["point"])
+        labels.push(el["_id"])
         values.push(el["count"])
 
       })
@@ -624,6 +1114,8 @@ export class MainDashboardComponent implements OnInit {
         values.push(el["error"])
 
       })
+
+      console.log(data)
 
       labels = labels.map((el: number) => { return el.toFixed(2) })
 
@@ -794,7 +1286,7 @@ export class MainDashboardComponent implements OnInit {
 
   getDaysBarPlot() {
 
-    let _days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    let _days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
     this.dashService.getDaysBarplot().subscribe((data) => {
       let labels = []
@@ -925,53 +1417,6 @@ export class MainDashboardComponent implements OnInit {
       this.startAnimationForBarChart(chart)
 
     })
-
-  }
-
-  getReviewsBarPlot() {
-
-
-    this.dashService.getReviewsBarplot().subscribe((data) => {
-      let labels = []
-      let values = []
-      data.forEach(el => {
-        labels.push(el["label"])
-        values.push(el["score"])
-
-      })
-      const dataDailySalesChart: any = {
-        labels: labels,
-        series: [values]
-      };
-
-
-      const optionsDailySalesChart: any = {
-        axisY: {
-          type: Chartist.AutoScaleAxis,
-          onlyInteger: true
-
-        },
-
-        low: 0,
-        high: Math.max(...values) + 1, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
-      }
-      var responsiveOptions: any[] = [
-        ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value[0];
-            }
-          }
-        }]
-      ];
-      var chart = new Chartist.Bar('#reviewsBar', dataDailySalesChart, optionsDailySalesChart, responsiveOptions);
-
-      //this.startAnimationForBarChart(chart)
-
-    })
-
 
   }
 

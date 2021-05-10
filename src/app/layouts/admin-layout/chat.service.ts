@@ -21,6 +21,10 @@ export class ChatService {
       });
   }
 
+  getChatById(id) {
+    return this.http.get<chatListItem>(this.server_url + "chat/" + id);
+  }
+
   countAllConversations() {
     return this.http.get<Number>(this.server_url + "countall");
   }

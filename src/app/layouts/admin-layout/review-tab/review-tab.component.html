@@ -1,0 +1,29 @@
+
+    <div class="card">
+        <div class="card-header card-header-warning">
+            <h4 class="card-title">Latest Reviews</h4>
+            <p class="card-category">New employees on 15th September, 2016</p>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover">
+                <thead class="text-warning">
+                    <th>Date</th>
+                    <th>Score</th>
+                    <th>Review</th>
+                    <th>Conversation</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rev of reviews">
+                        <td>{{rev.time |date : "mediumDate"}}</td>
+                        <td>{{rev.score}} /5</td>
+                        <td>{{rev.commentaire}}</td>
+                        <td><a [routerLink]="['/chatdashboard']" [queryParams]="{ id: rev.sender_id }" >see discussion</a></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="5" [pageSizeOptions]="[5]">
+                    </mat-paginator>                    
+                </tfoot>
+            </table>
+        </div>
+    </div>
