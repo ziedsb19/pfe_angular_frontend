@@ -36,7 +36,9 @@ import { TopDashboardComponent } from './top-dashboard/top-dashboard.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { ReviewTabComponent } from './review-tab/review-tab.component';
 import { IntentDashboardComponent } from './intent-dashboard/intent-dashboard.component';
-import { IntentTabComponent } from './intent-tab/intent-tab.component'
+import { IntentTabComponent } from './intent-tab/intent-tab.component';
+import { ChatTestComponent } from './chat-test/chat-test.component';
+import { TestMessageBotComponent } from './test-message-bot/test-message-bot.component'
 
 @NgModule({
   imports: [
@@ -78,6 +80,8 @@ import { IntentTabComponent } from './intent-tab/intent-tab.component'
     ReviewTabComponent,
     IntentDashboardComponent,
     IntentTabComponent,
+    ChatTestComponent,
+    TestMessageBotComponent,
   ]
 })
 

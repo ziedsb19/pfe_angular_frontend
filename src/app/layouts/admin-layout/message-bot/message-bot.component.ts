@@ -23,14 +23,13 @@ export class MessageBotComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.message) {
       this.time = new Date(this.message.time * 1000)
       this.message__obj = this.message.message
-
+      console.log(this.message__obj)
       this.compileMessage(this.message__obj)
     }
   }

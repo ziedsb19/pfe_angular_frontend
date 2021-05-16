@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <app-top-dashboard></app-top-dashboard>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+    
+                <div id="chathistory">
+    
+                    <div class="container clearfix">
+                        
+                        <div class="chat">
+                        <div class="chat-header clearfix">
+                            <img src="/assets/img/chat/chat.jpg" alt="avatar" />
+                            
+                            <div class="chat-about">
+                            <div class="chat-with">Test your chatbot</div>
+                            <div class="chat-num-messages" >this is a debugging chat widget for test purposes</div>
+                            </div>
+                            <i class="fa fa-star"></i>
+                        </div> <!-- end chat-header -->
+                        
+                        <div class="chat-history test_chat" >
+                            <ul >
+                                <div *ngFor="let element of messages">
+        
+                                    <app-test-message-bot *ngIf="element.sender=='bot' " [message]="element" [messages]="messages" [sender_id]="sender_id"></app-test-message-bot>
+                                    <app-message-user *ngIf="element.sender=='user' " [message]="element" ></app-message-user>
+                                </div>
+                            
+                            </ul>
+                            
+                        </div> <!-- end chat-history -->
+
+                        <div class="chat-message clearfix">
+                            <input type="text" name="message-to-send" id="message-to-send" placeholder ="Type your message" (keypress)="onEnter($event)" [(ngModel)]="user_message" />
+                                    
+                            <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-file-image-o"></i>
+                            
+                            <button (click)="sendMessage()" >Send</button>
+                    
+                        </div> 
+
+                        </div> <!-- end chat -->
+                        
+                    </div> <!-- end container -->
+                    
+                    
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

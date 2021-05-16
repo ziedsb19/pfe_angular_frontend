@@ -11,7 +11,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/chatdashboard', title: 'Chatbot Dashboard', icon: 'smart_toy', class: '' },
   { path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
   { path: '/intents', title: 'Intents', icon: 'leaderboard', class: '' },
-
+  { path: '/test', title: 'Test Chatbot', icon: 'bug_report', class: '' },
 ];
 
 @Component({

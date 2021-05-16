@@ -1,0 +1,46 @@
+<li>
+    <div class="message-data">
+        <span class="message-data-name"><i class="fa fa-circle online"></i> bot</span>
+        <span class="message-data-time" >{{time |date:"mediumTime"}} </span>
+    </div>
+    <div class="message my-message" *ngIf="message_type=='text'">
+        <span [innerHTML]="message_render">
+        </span>
+    </div>
+
+    <div class="message my-message" *ngIf="message_type=='link'" >
+        <ul  class="bg-white p-2" >
+            <li *ngFor="let element of link_render" class="text-truncate mb-2" >
+                <a [href]="element.href" class="text-success">
+                    {{element.href}} 
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="message my-message" *ngIf="message_type=='ratiob'">
+        <span [innerHTML]="choice_render.text">
+        </span>
+    </div>
+    <div *ngIf="message_type=='ratiob'" class="col-12 mb-2">
+        <button mat-raised-button color="primary" class="mr-2 mb-1" *ngFor="let choice of choice_render.choices" (click)="write_message(choice.text)" > {{choice.text}}</button>
+    </div>
+
+    <div class="" *ngIf="message_type=='table'">
+        <img src="/assets/img/csv.jpg" height="100" width="auto" alt="">  
+    </div>
+    
+
+    <div class="message my-message" *ngIf="message_type=='datepicker'" >
+        <span [innerHTML]="message_render">
+        </span>
+        <div class="bg-white p-2 text-dark">
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Inherited calendar color</mat-label>
+                <input matInput [matDatepicker]="picker1" (dateChange)="write_message_date($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+        </div>
+    </div>
+</li>

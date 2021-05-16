@@ -1,0 +1,5 @@
+#chathistory .test_chat {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 50vh;
+}
