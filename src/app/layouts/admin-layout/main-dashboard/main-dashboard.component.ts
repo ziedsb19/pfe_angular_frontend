@@ -586,15 +586,17 @@ export class MainDashboardComponent implements OnInit {
   getAgeBar(data) {
     let tmp_values = []
     data.forEach(el => {
-      tmp_values.push(el["_id"])
+      if (el["_id"] > 0)
+        tmp_values.push(el["_id"])
     })
 
     let minAge = 0
     let maxAge = 0
 
     if (tmp_values.length > 0) {
-      minAge = Math.min(...tmp_values)
-      maxAge = Math.max(...tmp_values)
+      let val = tmp_values.filter(el => { return el > 0 })
+      minAge = Math.min(...val)
+      maxAge = Math.max(...val)
     }
 
     let ages = Array.from(new Array(maxAge - minAge + 1), function (v, k) { return k + minAge })
@@ -607,21 +609,16 @@ export class MainDashboardComponent implements OnInit {
 
     this.dashService.getAgeBarPlot().subscribe((data) => {
 
-      let ages_dict = this.getAgeBar(data)
+      //let ages_dict = this.getAgeBar(data)
 
 
       let labels = []
       let values = []
 
       data.forEach(el => {
-        ages_dict[el["_id"]] = el["count"]
+        labels.push(el["_id"])
+        values.push(el["count"])
       })
-
-      for (let k in ages_dict) {
-        labels.push(k)
-        values.push(ages_dict[k])
-      }
-
 
       const dataDailySalesChart: any = {
         labels: labels,
@@ -658,21 +655,14 @@ export class MainDashboardComponent implements OnInit {
 
     this.dashService.getAgeByLength().subscribe((data) => {
 
-      let ages_dict = this.getAgeBar(data)
-
 
       let labels = []
       let values = []
 
       data.forEach(el => {
-        ages_dict[el["_id"]] = el["count"]
+        labels.push(el["_id"])
+        values.push(el["count"])
       })
-
-      for (let k in ages_dict) {
-        labels.push(k)
-        values.push(ages_dict[k])
-      }
-
 
       const dataDailySalesChart: any = {
         labels: labels,
@@ -710,21 +700,14 @@ export class MainDashboardComponent implements OnInit {
 
     this.dashService.getAgeByReview().subscribe((data) => {
 
-      let ages_dict = this.getAgeBar(data)
-
 
       let labels = []
       let values = []
 
       data.forEach(el => {
-        ages_dict[el["_id"]] = el["count"]
+        labels.push(el["_id"])
+        values.push(el["count"])
       })
-
-      for (let k in ages_dict) {
-        labels.push(k)
-        values.push(ages_dict[k])
-      }
-
 
       const dataDailySalesChart: any = {
         labels: labels,
@@ -759,21 +742,14 @@ export class MainDashboardComponent implements OnInit {
 
     this.dashService.getAgeByError().subscribe((data) => {
 
-      let ages_dict = this.getAgeBar(data)
-
 
       let labels = []
       let values = []
 
       data.forEach(el => {
-        ages_dict[el["_id"]] = el["count"]
+        labels.push(el["_id"])
+        values.push(el["count"])
       })
-
-      for (let k in ages_dict) {
-        labels.push(k)
-        values.push(ages_dict[k])
-      }
-
 
       const dataDailySalesChart: any = {
         labels: labels,
@@ -790,27 +766,12 @@ export class MainDashboardComponent implements OnInit {
         },
 
         axisX: {
-          labelInterpolationFnc: function (value) {
-            return ages_dict[value] != 0 ? value : null;
-          }
+
         },
 
 
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
       }
-
-      /*
-      var responsiveOptions: any[] = [
-        ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return ages_dict[value] != 0 ? value : null;
-            }
-          }
-        }]
-      ];
-      */
 
       var chart = new Chartist.Bar('#AgeByError', dataDailySalesChart, optionsDailySalesChart,);
 
@@ -1403,7 +1364,7 @@ export class MainDashboardComponent implements OnInit {
         },
         axisY: {
           low: 0,
-          high: Math.round(Math.max(...values) / sum * 100),
+          //high: Math.round(Math.max(...values) / sum * 100) + 20,
           labelInterpolationFnc: function (value) {
             return Math.round(value / sum * 100) + '%';
           }

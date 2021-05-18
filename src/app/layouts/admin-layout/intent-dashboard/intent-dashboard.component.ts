@@ -97,7 +97,7 @@ export class IntentDashboardComponent implements OnInit {
           low: 0,
           high: Math.max(...values) + 1,
           labelInterpolationFnc: function (value) {
-            return Math.round(value / values.reduce(function (a, b) { return a + b }) * 100) + "%";
+            return Math.round(value / values.reduce(function (a, b) { return a + b }) * 100);
           }
         },
         chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },

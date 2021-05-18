@@ -35,6 +35,10 @@ export class ReviewTabComponent implements OnInit {
     this.start = event.pageIndex * event.pageSize + 1
     this.end = Math.min(this.start + event.pageSize - 1, this.length)
 
+    this.dashService.getLatestReviews(this.start, this.end).subscribe(data => {
+      this.reviews = data
+    })
+
   }
 
 }
