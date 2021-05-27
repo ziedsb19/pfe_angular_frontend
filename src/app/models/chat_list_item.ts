@@ -27,7 +27,9 @@ interface chatListItem {
 
         "message": any,
         "time": number,
-        "sender": string
+        "sender": string,
+        "lang": string,
+        "prob_lang": number
     }
     ],
     sender_id: string,

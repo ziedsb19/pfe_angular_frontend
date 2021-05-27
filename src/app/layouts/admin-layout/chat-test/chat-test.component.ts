@@ -25,9 +25,12 @@ export class ChatTestComponent implements OnInit {
 
       "message": this.user_message,
       "time": new Date().getTime() / 1000,
-      "sender": "user"
+      "sender": "user",
+      "lang": null,
+      "prob_lang": null
     }
     this.messages.push(message)
+    let message_id = this.messages.length
 
     this.testService.sendMessage(this.user_message, this.sender_id).subscribe(data => {
       data.forEach(item => {
@@ -36,14 +39,18 @@ export class ChatTestComponent implements OnInit {
         item['time'] = new Date().getTime() / 1000
         this.messages.push(item)
       })
-      /*
+
       if (data.length != 0) {
-        let last_messages = this.messages.filter(x => { return x.sender == "user" })
-        last_messages[last_messages.length - 1]["lang"] = data[0]["langue"]
-        last_messages[last_messages.length - 1]["prob_lang"] = data[0]["prob_lang"]
-        console.log(data)
+
+        let pred = {
+          "lang": data[0]["langue"],
+          "prob_lang": ((data[0]["prob_lang"]) * 100).toFixed(2),
+          "sender": "pred"
+        }
+
+        this.messages.splice(message_id, 0, pred)
       }
-      */
+      console.log(this.messages)
     })
     this.user_message = ""
   }

@@ -24,6 +24,12 @@
                                 <div *ngFor="let element of messages">
         
                                     <app-test-message-bot *ngIf="element.sender=='bot' " [message]="element" [messages]="messages" [sender_id]="sender_id"></app-test-message-bot>
+                                    <div *ngIf="element.sender=='pred'" class="mb-1">
+                                        <div class="text-muted"> language: 
+                                            <i><strong>{{element.lang|uppercase}}</strong></i> with probability <i><strong>{{element.prob_lang}} %</strong></i> 
+                                        </div>
+                                        
+                                    </div>
                                     <app-message-user *ngIf="element.sender=='user' " [message]="element" ></app-message-user>
                                 </div>
                             
