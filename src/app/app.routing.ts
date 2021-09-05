@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthGuard } from './auth.guard'
+import { Auth2Guard } from './auth2.guard'
 
-const routes: Routes =[
+const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
@@ -13,9 +16,19 @@ const routes: Routes =[
   }, {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [{
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+    }]
+  },
+  {
+    path: 'auth',
+    component: LoginComponent,
+    canActivate: [Auth2Guard],
+    children: [{
+      path: '',
+      loadChildren: './auth/auth.module#AuthModule'
     }]
   }
 ];
@@ -24,8 +37,8 @@ const routes: Routes =[
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-       useHash: true
+    RouterModule.forRoot(routes, {
+      useHash: true
     })
   ],
   exports: [

@@ -33,7 +33,6 @@ import { StarpipePipe } from './pipes/starpipe.pipe';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
-
   ],
   declarations: [
     AppComponent,

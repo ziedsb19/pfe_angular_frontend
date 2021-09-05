@@ -1,0 +1,40 @@
+<div class="wrapper_zied">
+
+	<div class="login-wrap">
+		<div class="login-html">
+			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign
+				In</label>
+			<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+			<div class="login-form">
+				<form class="sign-in-htm" [formGroup]="LoginForm">
+					<div class="group">
+						<label for="user" class="label">Username</label>
+						<input id="user" type="text" class="input" formControlName="login">
+					</div>
+					<div class="group">
+						<label for="pass" class="label">Password</label>
+						<input id="pass" type="password" class="input" data-type="password" formControlName="password">
+					</div>
+					<div class="group">
+						<input id="check" type="checkbox" class="check" checked>
+						<label for="check"><span class="icon"></span> Keep me Signed in</label>
+					</div>
+					<div class="group">
+						<input type="submit" class="button" value="Sign In" (click)="onSubmit()"
+							[disabled]="LoginForm.invalid">
+					</div>
+					<div class="foot-lnk" *ngIf="LoginForm.invalid">
+						<small><i style="color: aliceblue;">All informations must be set</i></small>
+
+					</div>
+
+					<div class="foot-lnk" *ngIf="login_error">
+						<small><i style="color: rgb(209, 52, 99);">Wrong Credentials</i></small>
+					</div>
+					<div class="hr"></div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
